@@ -43,29 +43,60 @@
 let cheeboard = ''
 for (let row = 0; row < 8; row++) {
 
-  // righe che iniziano con lo spazio
-  if (row % 2 === 0) {
-    // qui inizio a popolare le colonne 
-    for (let col = 0; col < 8; col++) {
-      // qui decido cosa metto nella colonna 
-      if (col % 2 === 0) {
-        cheeboard += ' ' //se la condizione è vera mette spazio, se no va all'alternativa
-      } else {
-        cheeboard += '#'
-      }
-    }
-    // righe che iniziano con #
-  } else { 
-    //popola colonne
-    for (let col = 0; col < 8; col++) {
-      // qui decido cosa mettere
-      if (col %2===0){
+  for (let col = 0; col < 8; col++) {
+    if (row % 2 === 0) {
+      cheeboard += col % 2 === 0 ? ' ' : '#'
+
+    } else {
+      if (col % 2 === 0){
+        // cheeboard += col %2===0 ? " " : '#'
         cheeboard+= "#" // se la colonna e pari metto #
       } else {
         cheeboard+= " " // se la colonna è dispari metto ' '
       }
     }
   }
+
+
+  // for (let col = 0; col < 8; col++) {
+  //   if (row % 2 === 0) {
+  //     if (col % 2 === 0) {
+  //       cheeboard += ' ' //se la condizione è vera mette spazio, se no va all'alternativa
+  //     } else {
+  //       cheeboard += '#'
+  //     }
+  //   } else {
+  //     if (col %2===0){
+  //       cheeboard+= "#" // se la colonna e pari metto #
+  //     } else {
+  //       cheeboard+= " " // se la colonna è dispari metto ' '
+  //     }
+  //   }
+  // }
+
+  // righe che iniziano con lo spazio
+  // if (row % 2 === 0) {
+  //   // qui inizio a popolare le colonne 
+  //   for (let col = 0; col < 8; col++) {
+  //     // qui decido cosa metto nella colonna 
+  //     if (col % 2 === 0) {
+  //       cheeboard += ' ' //se la condizione è vera mette spazio, se no va all'alternativa
+  //     } else {
+  //       cheeboard += '#'
+  //     }
+  //   }
+  //   // righe che iniziano con #
+  // } else { 
+  //   //popola colonne
+  //   for (let col = 0; col < 8; col++) {
+  //     // qui decido cosa mettere
+  //     if (col %2===0){
+  //       cheeboard+= "#" // se la colonna e pari metto #
+  //     } else {
+  //       cheeboard+= " " // se la colonna è dispari metto ' '
+  //     }
+  //   }
+  // }
   // qui ho finito il flow control 
   cheeboard += '\n' // qui aggiungo new line 
   // qui posso andare a capo 

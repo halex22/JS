@@ -27,25 +27,42 @@ console.log(resultString)
 resultString = ''  
 console.log('3 exercise')
 let hashTagNumber = 1
+const numberOfRows = 7
 
-for (let index = 0; index < 5; index++) {
-
-  const numberOfBlankSpaces = (9 - hashTagNumber) / 2
+for (let row = 0; row <= numberOfRows; row++) {
+  const numberOfEmtpySpaces = numberOfRows - row
   innerRow = ''
-  while (innerRow.length < 9) {
-    for (let blackSpace = 0; blackSpace < numberOfBlankSpaces; blackSpace++) {
-      innerRow += ' '
-    }
-    if (innerRow.length >= 9) break
-    for (let hastTag = 0; hastTag < hashTagNumber; hastTag++) {
-      innerRow += '#'
-    }
+  for (let index = 0; index < numberOfEmtpySpaces; index++) {
+    innerRow += ' '
+  }
+  for (let index = 0; index < hashTagNumber; index++) {
+    innerRow += '#'
+  }
+  for (let index = 0; index < numberOfEmtpySpaces; index++) {
+    innerRow += ' '
   }
   resultString += `${innerRow}\n`
   hashTagNumber += 2
-
 }
 console.log(resultString)
+// for (let index = 0; index < 5; index++) {
+
+//   const numberOfBlankSpaces = (9 - hashTagNumber) / 2
+//   innerRow = ''
+//   while (innerRow.length < 9) {
+//     for (let blackSpace = 0; blackSpace < numberOfBlankSpaces; blackSpace++) {
+//       innerRow += ' '
+//     }
+//     if (innerRow.length >= 9) break
+//     for (let hastTag = 0; hastTag < hashTagNumber; hastTag++) {
+//       innerRow += '#'
+//     }
+//   }
+//   resultString += `${innerRow}\n`
+//   hashTagNumber += 2
+
+// }
+// console.log(resultString)
 
 
 
@@ -93,12 +110,12 @@ console.log(resultString)
 // }
 
 // 8 exercise 
-const userNumber = parseInt(prompt('Please provide a number', 5))
+// const userNumber = parseInt(prompt('Please provide a number', 5))
 
-let index = userNumber
-const updateFactor = userNumber < 100 ? 1 : -1
-while (index !== 100) {
-  console.log(index)
-  index += updateFactor
-}
-console.log(100)
+// let index = userNumber
+// const updateFactor = userNumber < 100 ? 1 : -1
+// while (index !== 100) {
+//   console.log(index)
+//   index += updateFactor
+// }
+// console.log(100)

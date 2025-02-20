@@ -17,7 +17,7 @@ function isEven(number) {
 
 const isEvenArrow = number => {
   if (number >= 2) return isEvenArrow((number - 2))
-    return number ? false : true
+  return !number
 }
 
 console.log(isEven(72))

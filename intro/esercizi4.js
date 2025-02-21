@@ -10,7 +10,7 @@ const lorenzo = {
   gender: 'm',
 }
 
-const Jan = {
+const jan = {
   name: 'jan',
   surname: 'stigliani',
   yob: 2000,
@@ -45,7 +45,7 @@ const jeremias = {
 const laura = {
   name: 'laura',
   surname: 'mazza',
-  yob: 1884,
+  yob: 1984,
   nationality: 'italy',
   gender: 'f'
 }
@@ -66,14 +66,22 @@ const hugo = {
   gender: 'f'
 }
 
-
-
-
-
+const classmates = [lorenzo, jan, jeremias, giovanni, sara, laura, eusebio, hugo]
 // 2 write a function that return the mean age of the students
 
+const calculateMeanAge = classmatesArray => {
+  let meanAge = 0
+  for (const classmate of classmatesArray) {
+    const classmateAge = 2025 - classmate.yob
+    meanAge += classmateAge
+  }
+  return meanAge / classmatesArray.length
+}
+
+console.log('the mean age of the students is: ', calculateMeanAge(classmates))
 
 // 3 write a function that return a [str] that contains the format "name/surname"
+const constructFirstLastName = classmatesArray => {}
 
 // 4 write a function that returns the count if males and females
 

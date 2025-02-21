@@ -130,17 +130,23 @@ console.log(countAllChars(array2))
 const vowels = ['a', 'e', 'i', 'o', 'u'];
 const isVowel = char => vowels.includes(char)
 
+const removeVowel = name => {
+  let nameWithoutVowels = ''
+  for (const letter of name) {
+    if (!isVowel(letter)) nameWithoutVowels += letter
+  }
+  return nameWithoutVowels
+}
+
 const deleteVowels = arrayToMap => {
   const mappedArray = []
   for (const name of arrayToMap) {
-    let mappedString = ''
-    for (const letter of name) {
-      if (!isVowel(letter)) mappedString += letter
-    }
-    mappedArray.push(mappedString)
+    mappedArray.push(removeVowel(name))
   }
   return mappedArray
 }
+// const reducedSampleArray = sampleArray.reduce((total, amount, index) => total + amount)
+// console.log(array2.reduce((total, name) => console.log(deleteVowels(name))) )
 console.log(deleteVowels(array2))
 
 // 11th exercise 
@@ -192,3 +198,36 @@ console.log(sumMultipleArrays(array3))
 
 // 14th exercise 
 // sum all arrays length 
+const summAllLengths = arrayToReduce => {
+  let total = 0
+  for (const singleArray of arrayToReduce) {
+    total += singleArray.length
+  }
+  return total
+}
+console.log(summAllLengths(array3))
+// 15th exercise
+// sum number with same index
+// const array3 = [[1,2,3], [3,2,1,0], [0,0,0,0,0]]
+const findBiggestLen = arrayToReduce => {
+  let maxLength = 0
+  for (const singleArray of arrayToReduce) {
+    if (singleArray.length > maxLength) maxLength = singleArray.length 
+  }
+  return maxLength
+}
+
+const sumSameIndex = arrayToReduce => {
+  const biggestArrayLen = findBiggestLen(arrayToReduce)
+  const sumArray = []
+  for (let i = 0; i < biggestArrayLen; i++) {
+    let currentIndexSum = 0
+    for (const array of arrayToReduce) {
+      currentIndexSum += array[i] ?? 0
+    }
+    sumArray.push(currentIndexSum)
+  }
+  return sumArray
+}
+
+console.log(sumSameIndex(array3))

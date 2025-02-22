@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+  display: block
+}
+
+body {
+  line-height: 1;
+}
+
+ol,ul {
+  list-style: none
+}
+
+blockquote,q {
+  quotes: none
+}
+
+.r-text {
+  right: 0;
+}
+
+.upper-text {
+  text-transform: uppercase;
+  font-family: "lora";
+}
+
+.vertical-text {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+}
+
+.sticky-wrapper {
+  position: absolute;
+}
+
+#greetings {
+  display: flex;
+  justify-content: center;
+}
+
+.block {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}

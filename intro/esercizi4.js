@@ -81,11 +81,23 @@ const calculateMeanAge = classmatesArray => {
 console.log('the mean age of the students is: ', calculateMeanAge(classmates))
 
 // 3 write a function that return a [str] that contains the format "name/surname"
-const constructFirstLastName = classmatesArray => {}
+const constructFirstLastName = classmatesArray => {
+  const firstLastCombo = []
+  for (const classmate of classmatesArray) {
+    firstLastCombo.push(`${classmate.name}/${classmate.surname}`)
+  }
+  return firstLastCombo
+}
+console.log(constructFirstLastName(classmates))
 
 // 4 write a function that returns the count if males and females
-
-// 5 write a function that returns 
+const countGenders = classmatesArray => {
+  const gendersCount = {}
+  for (const element of object) {
+    
+  }
+}
+// 5 write a function that returns the mean of all means
 
 
 // 6 write a function that returns an object structured 

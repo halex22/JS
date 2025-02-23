@@ -26,8 +26,13 @@ blockquote,q {
 }
 
 aside {
-  
   padding-bottom: 1rem;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
 }
 
 @keyframes backgroundCycle {
@@ -43,11 +48,65 @@ aside {
   75% { background-color: #83ff33; }
   83.3% { background-color: #ff8333; }
   91.6% { background-color: #3383ff; }
-  100% { background-color: #ff5733; } /* Back to first color */
+  100% { background-color: #ff5733; } 
 }
 
 body {
-  animation: backgroundCycle 240s infinite ease-in-out; /* 12 colors x 5s each */
+  animation: backgroundCycle 240s infinite ease-in-out; 
+}
+
+@keyframes move-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-35%); } 
+}
+
+@keyframes move-right {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(35%); } 
+}
+
+@keyframes show-text {
+  0% { opacity: 0; visibility: hidden; }
+  100% { opacity: 1; visibility: visible; }
+}
+
+
+#center-to-r, #center-to-l {
+  display: flex;
+  justify-content: center; 
+  position: relative; 
+}
+
+#center-to-r {
+  animation: move-right 5s ease-in-out forwards;
+}
+
+#center-to-l {
+  animation: move-left 5s ease-in-out forwards;
+}
+
+.right-p {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 4rem 4rem;
+  animation: show-text 5s ease-in-out;
+}
+
+.left-p {
+  position: absolute;
+  bottom: 0;
+  animation: show-text 5s ease-in-out;
+}
+
+
+
+.left-p {
+  position: absolute;
+  bottom: 0;
+  opacity: 0; 
+  visibility: hidden; 
+  animation: show-text 5s ease-in-out forwards;
 }
 
 .r-text {
@@ -62,6 +121,7 @@ body {
 .vertical-text {
   writing-mode: vertical-lr;
   text-orientation: upright;
+  font-size: 1.5rem;
 }
 
 .sticky-wrapper {
@@ -70,23 +130,15 @@ body {
 }
 
 #greetings {
-  display: flex;
-  justify-content: center;
+  margin: 0 4rem;
+  position: relative;
 }
-
-/* 
-#adds-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); 
-  grid-auto-rows: min-content;
-}  */
-
-
 
 #adds-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 40px;
+  margin-top: 4rem;
 }
 
 
@@ -106,10 +158,3 @@ body {
   align-items: flex-end;
   justify-content: space-between;
 }
-
-
-
-/* .item:hover {
-  transform: translateY(-10px);
-} */
-

@@ -67,6 +67,25 @@ const hugo = {
 }
 
 const classmates = [lorenzo, jan, jeremias, giovanni, sara, laura, eusebio, hugo]
+
+function createMarksArrays() {
+  const marks = []
+
+  while (marks.length < 5) {
+    const randomMark = Math.round(Math.random() * 10)
+    if (randomMark > 6) marks.push(randomMark)
+  } 
+  return marks
+}
+
+function addMarks(classmatesArray) {
+  for (const classmate of classmatesArray) {
+    classmate['marks'] = createMarksArrays()
+  }
+}
+
+addMarks(classmates)
+// console.log(classmates)
 // 2 write a function that return the mean age of the students
 
 const calculateMeanAge = classmatesArray => {
@@ -93,12 +112,37 @@ console.log(constructFirstLastName(classmates))
 // 4 write a function that returns the count if males and females
 const countGenders = classmatesArray => {
   const gendersCount = {}
-  for (const element of object) {
-    
+  for (const classmate of classmatesArray) {
+    const classmateGender = classmate.gender
+    if (Object.keys(gendersCount).includes(classmateGender)) {
+      gendersCount[classmateGender] += 1
+    } else {
+      gendersCount[classmateGender] = 1
+    }
   }
+  return gendersCount
 }
-// 5 write a function that returns the mean of all means
+console.log(countGenders(classmates))
 
+// 5 write a function that returns the mean of all means
+const calculateMean = numbersArray => {
+  let accumulator = 0
+  for (const number of numbersArray) {
+    accumulator += number
+  }
+  
+  return accumulator / numbersArray.length
+}
+
+const meanOfMeans = classmatesArray => {
+  let generalMean = 0
+  for (const classmate of classmatesArray) {
+    const classmateMean = calculateMean(classmate.marks)
+    generalMean += classmateMean
+  }
+  return generalMean / classmatesArray.length
+}
+console.log(`The general mean of all classmates is: ${meanOfMeans(classmates)}`)
 
 // 6 write a function that returns an object structured 
 // {nationality1: [student1Name, student2Name ...], nationality2: [student3Name, ...]}

@@ -21,3 +21,20 @@
 .span-10 {
   grid-row: span 10;
 }
+
+.span-5 {
+  grid-row: span 5;
+}
+
+.text-xl {
+  font-size: 10rem;
+}
+
+.text-md {
+  font-size: 2rem;
+}
+
+.w-full {
+  width: 100%;
+}
+

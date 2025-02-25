@@ -81,10 +81,18 @@ function createMarksArrays() {
 function addMarks(classmatesArray) {
   for (const classmate of classmatesArray) {
     classmate['marks'] = createMarksArrays()
+    classmate['calculateMean'] = () => {
+      let mean = 0
+      for (const mark of classmate.marks) {
+        mean += mark
+      }
+      return mean / classmate.marks.length
+    }
   }
 }
 
 addMarks(classmates)
+console.log(classmates)
 // console.log(classmates)
 // 2 write a function that return the mean age of the students
 
@@ -139,6 +147,10 @@ const meanOfMeans = classmatesArray => {
   for (const classmate of classmatesArray) {
     const classmateMean = calculateMean(classmate.marks)
     generalMean += classmateMean
+    // classmate.calculateMean()
+
+    // generalMean = classmate.calculateMean()
+
   }
   return generalMean / classmatesArray.length
 }
@@ -147,3 +159,20 @@ console.log(`The general mean of all classmates is: ${meanOfMeans(classmates)}`)
 // 6 write a function that returns an object structured 
 // {nationality1: [student1Name, student2Name ...], nationality2: [student3Name, ...]}
 
+const countNationalities = classmatesArray => {
+  const nationaties = {}
+  for (const classmate of classmatesArray) {
+    const classmateNation = classmate.nationality
+    if (Object.keys(nationaties).includes(classmateNation)) {
+      nationaties[classmateNation].push(classmate.name)
+    } else {
+      nationaties[classmateNation] = [classmate.name]
+    }
+  }
+  return nationaties
+}
+
+console.log(countNationalities(classmates))
+
+// console.log('testing mean ')
+// console.log(classmates[0].calculateMean(), classmates[0])

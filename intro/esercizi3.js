@@ -10,7 +10,6 @@ const removeGraterThan30 = arrayToFilter => {
 return filteredArray
 }
 console.log(removeGraterThan30(array1))
-
 // 2nd exercise
 // convert elements to fahrenheit
 const celToFah = number => (number * (9/5) + 32)

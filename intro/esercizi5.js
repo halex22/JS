@@ -41,10 +41,10 @@ function genericReduce(array, reducingFunction, startingAccumulator){
 // ESERCIZIO 1 (FILTER)
 // filtrare tutti i numeri minori o uguali a zero
 
-// const keepBiggerThanZero = value => value > 0;
-// const genericNumbersBiggerThanZero = genericFilter(array1, keepBiggerThanZero);
+const keepBiggerThanZero = value => value > 0;
+const genericNumbersBiggerThanZero = genericFilter(array1, keepBiggerThanZero);
 
-// const numbersBiggerThanZero = array1.filter(value => value > 0)
+const numbersBiggerThanZero = array1.filter(value => value > 0)
 
 // console.log(numbersBiggerThanZero);
 
@@ -83,56 +83,56 @@ const array2 = ['pippo', 'pluto', 'paperino', 'qui', 'quo', 'qua', 'clarabella',
 // ESERCIZIO 5 (FILTER)
 // filtrare tutti i nomi piu grandi di 4 caratteri
 const isShorterThanFour = value => value.length < 4
-// const genericShortNames = genericFilter(array2, isShorterThanFour)
-// const shortNames = array2.filter(name => name.length < 4)
+const genericShortNames = genericFilter(array2, isShorterThanFour)
+const shortNames = array2.filter(name => name.length < 4)
 
 // ESERCIZIO 6 (MAP)
 // traformare tutte le stringe in maiuscolo
-// const convertToUpperCase = name => name.toUpperCase()
-// const genericUpperCaseNames = genericMap(array2, convertToUpperCase)
-// const upperCaseNames = array2.map(name => name.toUpperCase())
+const convertToUpperCase = name => name.toUpperCase()
+const genericUpperCaseNames = genericMap(array2, convertToUpperCase)
+const upperCaseNames = array2.map(name => name.toUpperCase())
 
 // ESERCIZIO 7 (MAP)
 // mettere SOLO le iniziali maiuscole
-// const capitalizeName = name => `${name[0].toUpperCase()}${name.slice(1)}`
-// const genericCapitalizeNames = genericMap(array2, capitalizeName)
-// const capitalizeNames = array2.map(name => `${name[0].toUpperCase()}${name.slice(1)}`)
+const capitalizeName = name => `${name[0].toUpperCase()}${name.slice(1)}`
+const genericCapitalizeNames = genericMap(array2, capitalizeName)
+const capitalizeNames = array2.map(name => `${name[0].toUpperCase()}${name.slice(1)}`)
 // ESERCIZIO 8 (REDUCE)
 // restituire una stringa composta dalle iniziali delle parole
-// const composeStrWithInitials = (a, c) => a + c[0] 
-// const genericStrWithInitial = genericReduce(array2, composeStrWithInitials, '')
-// const strWithInitials = array2.reduce((a, c) => a+c[0], '')
+const composeStrWithInitials = (a, c) => a + c[0] 
+const genericStrWithInitial = genericReduce(array2, composeStrWithInitials, '')
+const strWithInitials = array2.reduce((a, c) => a+c[0], '')
 
 // ESERCIZIO 9 (REDUCE)
 // sommare tutti i caratteri di tutte le stringhe
-// const sumNamesLen = (a,c) => a + c.length
-// const genericCharSum = genericReduce(array2, sumNamesLen, 0)
-// const charSum = array2.reduce((a,c) => a + c.length, 0)
+const sumNamesLen = (a,c) => a + c.length
+const genericCharSum = genericReduce(array2, sumNamesLen, 0)
+const charSum = array2.reduce((a,c) => a + c.length, 0)
 
 // ESERCIZIO 10 (MAP)
 // eliminare le vocali dalle stringhe
 const vowels = ['a', 'e', 'i', 'o', 'u'];
-// const isVowel = char => vowels.includes(char.toLowerCase())
+const isVowel = char => vowels.includes(char.toLowerCase())
 
-// const removeVowels = name => [...name].filter(char => !vowels.includes(char)).join('')
+const removeVowels = name => [...name].filter(char => !vowels.includes(char)).join('')
 
-// const genericNoVowelsNames = genericMap(array2, removeVowels)
-// const noVowelsNames = array2.map(name => [...name].filter(char => !vowels.includes(char)).join(''))
+const genericNoVowelsNames = genericMap(array2, removeVowels)
+const noVowelsNames = array2.map(name => [...name].filter(char => !vowels.includes(char)).join(''))
 
 // ESERCIZIO 11 (MAP)
 // restituire un array di numeri che sono le lunghezze delle singole parole
-// const countNameLen = name => name.length
-// const genericNameLen = genericMap(array2, countNameLen)
-// const NamesLen = array2.map(name => name.length)
+const countNameLen = name => name.length
+const genericNameLen = genericMap(array2, countNameLen)
+const NamesLen = array2.map(name => name.length)
 
 
 const array3 = [[1,2,3], [3,2,1,0], [0,0,0,0,0]];
 
 //ESERCIZIO 12 (MAP)
 //restituire un array di numeri che sono le lunghezze dei sigoli array
-// const countArrayLenFnct = arrayOfNumber => arrayOfNumber.length 
-// const genericCountArrayLen = genericMap(array3, countArrayLenFnct)
-// const countArrayLen = array3.map(arrayOfNumber => arrayOfNumber.length)
+const countArrayLenFnct = arrayOfNumber => arrayOfNumber.length 
+const genericCountArrayLen = genericMap(array3, countArrayLenFnct)
+const countArrayLen = array3.map(arrayOfNumber => arrayOfNumber.length)
 
 //ESERCIZIO 13 (REDUCE)
 //sommare tutti i numeri in tutti gli array
@@ -160,24 +160,40 @@ const sumAllArrayLen = array3.reduce((a, c) => a + c.length, 0)
 const maxArraysLen = array3.map(arrayOfNumber => arrayOfNumber.length)
 const maxIndex = Math.max(...maxArraysLen)
 
-const superReduceWithClosure = (a, c) => {
-    for (let index = 0; index < maxIndex; index++) {
-        const numberToSum = c[index] ?? 0
-        a[index] ? a[index] += numberToSum : a[index] = numberToSum
-    }
-    return a
-}
-const sameIdexSumArrayClosure = array3.reduce(superReduceWithClosure, [])
-console.log(sameIdexSumArrayClosure)
-
-
-// const sameIdexSumArray = array3.reduce((a, c) => {
-//     const maxArraysLen = array3.map(arrayOfNumber => arrayOfNumber.length)
-//     const maxIndex = Math.max(...maxArraysLen)
+// const superReduceWithClosure = (a, c) => {
 //     for (let index = 0; index < maxIndex; index++) {
 //         const numberToSum = c[index] ?? 0
 //         a[index] ? a[index] += numberToSum : a[index] = numberToSum
 //     }
 //     return a
-    
+// }
+// const sameIdexSumArrayClosure = array3.reduce(superReduceWithClosure, [])
+// console.log(sameIdexSumArrayClosure)
+
+
+// const sameIdexSumArray = array3.reduce((a, c) => {
+//     for (let index = 0; index < c.length; index++) {
+//         const numberToSum = c[index] 
+//         a[index] ? a[index] += numberToSum : a[index] = numberToSum
+//     }
+//     return a
 // } , [])
+
+
+const sameIdexSumArray = array3.reduce((a, c) => {
+    for (let index = 0; index < c.length; index++) {
+        const numberToSum = c[index] 
+        a[index] ? a[index] += numberToSum : a[index] = numberToSum
+    }
+    return a
+} , [])
+// array3.reduce((a, c) => c.map((n, i) => c.push(a[i] ? a[i] += n : a[i] = n)), [])
+// console.log(array3.reduce((a, c) => c.map((n, i) => a[i] ? a[i] += n : a[i] = n), []))
+const highResultMap = array3.reduce((a, c) => c.map((n, i) => a[i] ? a[i] += n : a[i] = n), [])
+const highResultEach = array3.reduce((a, c) => {
+    c.forEach((n, i) => a[i] ? a[i] += n : a[i] = n)
+    return a
+}, [])
+
+console.log(highResultMap) 
+console.log(highResultEach)

@@ -95,9 +95,6 @@ function draw() {
   cleanBeforeRefreshing();
 
   ctx.fillStyle = "black";
-  // entities.forEach((rect) => {
-  //   ctx.fillRect(rect.positionX, rect.positionY, rect.width, rectHeight);
-  // });
   entities.forEach(rectLine => {
     rectLine.forEach(rect => {
       ctx.fillRect(rect.positionX, rect.positionY, rect.width, rectHeight);

@@ -10,3 +10,7 @@ body {
 .sample-canvas {
     background-color: white;
 }
+
+#snow-canvas {
+    background-color: rgb(33, 64, 99);
+}

@@ -55,6 +55,7 @@ function draw() {
   cleanBeforeRefreshing()
   snowFlakes.forEach(snowFlake => {
     ctx.drawImage(snowPng, snowFlake.positionX, snowFlake.positionY, ...snowFlake.widthHeight)
+    // ctx.rotate(Math.PI / 3)
   })
 }
 

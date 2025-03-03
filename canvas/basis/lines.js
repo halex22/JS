@@ -71,22 +71,16 @@ function setUp() {
   for (let i = 0; i < 10; i++) {
     const rectLine = createLine(i)
     entities.push(rectLine)
-    // const rect = createRectangle(i);
-    // entities.push(rect);
   }
 }
 
 function update() {
-  // entities.forEach((rect) => {
-  //   rect.positionX += rect.speedX;
-  //   if (rect.positionX < 0) rect.positionX = 600;
-  //   if (rect.positionX > 600) rect.positionX = 0;
-  // });
+
   entities.forEach(rectLine => {
     rectLine.forEach(rect => {
     rect.positionX += rect.speedX;
-    if (rect.positionX < 0) rect.positionX = 600;
-    if (rect.positionX > 600) rect.positionX = 0;
+    if (rect.positionX + rect.width < 0) rect.positionX = 600;
+    if (rect.positionX > 600) rect.positionX = 0 - rect.width / 2;
     })
   })
 }
@@ -94,7 +88,7 @@ function update() {
 function draw() {
   cleanBeforeRefreshing();
 
-  ctx.fillStyle = "black";
+  ctx.fillStyle = "rgb(0,0,0)";
   entities.forEach(rectLine => {
     rectLine.forEach(rect => {
       ctx.fillRect(rect.positionX, rect.positionY, rect.width, rectHeight);

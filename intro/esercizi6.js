@@ -64,22 +64,34 @@ class Teacher extends Human {
     const str = super.toString()
     return str + `\n    Subject:${this.subject}`
   }
+
+  bestStudent() {
+    // return this.students.reduce((a, c) => c.calculateMean() > a)
+  }
 }
 
-const student1 = new Student("Laura","Mazza", 1984,"it", "f", [1, 2, 3, 4, 5, 6]);
-const student2 = new Student("Eusebio", "Veizi", 1993, "alb", "m");
-const Student3 = new Student("lorenzo", "puppo", 1995, 'it', 'm')
+class Principal extends Human {
+  constructor (name, surname, yob, nationality, gender, schoolName, teachers = []) {
+    super(name, surname, yob, nationality, gender)
+    this.schoolName = schoolName
+    this.teachers = teachers
+  }
 
-// console.log(student1.calculateMean());
-// console.log(student2.calculateMean());
-console.log(student1.toString());
-console.log(student2.toString());
+  bestTeacher () {}
+  bestStudent () {}
+}
 
-const students = [student1, student2]
-// students.sort((s1, s2) => s1.compareTo(s2))
-// console.log(students)
-const teacher = new Teacher('Andrea', 'asioli', 1978, 'it', 'm', 'CS', students)
-console.log(teacher.toString())
-// student1.callMe()
-// console.log(student1.getBestMark())
-// console.log(student2.getBestMark())
+
+// aggiungere al tString di tutte le xlassi gender e nationality 
+
+
+// aggiungere a teacher le funzioni: bestStudent  e StudentsMean
+
+
+// aggiungere la classe Rpincipal che erediterà da human e come caratteristiche
+// - array of teachers
+// - school name 
+
+
+// aggiungere al principal due funzioni
+// - beastTeacher e BestStudent

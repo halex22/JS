@@ -1,15 +1,25 @@
 class Human {
+  #yob;
   constructor(name, surname, yob, nationality, gender) {
     this.name = name;
     this.surname = surname;
-    this.yob = yob;
+    this.#yob = yob;
     this.nationality = nationality;
     this.gender = gender;
   }
 
+  get yob() {
+    return this.#yob
+  }
+
+  set yob(value){
+
+    
+  }
+
   getAge() {
     const now = new Date();
-    return now.getFullYear() - this.yob;
+    return now.getFullYear() - this.#yob;
   }
 
   toString() {
@@ -148,11 +158,19 @@ class ContoCorrente {
     return `${this.owner.name} ${this.owner.surname}' bank account`
   }
 
-  addMoney(amount) {
-    if (amount < 1) {
+  isAmountValid(amount) {
+    return amount > 1
+  }
+
+  processDeposit(amountToBeAdded) {
+    if (!this.isAmountValid(amountToBeAdded)) {
       console.error('the amount to be added must be positive')
       return 
     }
+    this.addMoney(amountToBeAdded)
+  }
+
+  addMoney(amount) {
     this.balance += amount
     console.log(`amount added successfully\nnew balance is ${this.balance}`)
   }
@@ -179,8 +197,8 @@ class ContoCorrente {
         //-preleva(importo): Sottrae l'importo dal saldo se ci sono fondi sufficienti, altrimenti stampa un messaggio di errore.
 const contoCorrente = new ContoCorrente(student8, 100)
 console.log(contoCorrente.toString())
-contoCorrente.addMoney(0)
-contoCorrente.addMoney(25)
+contoCorrente.processDeposit(0)
+contoCorrente.processDeposit(25)
 contoCorrente.withdrawCash(1000)
 contoCorrente.withdrawCash(5)
 
@@ -231,7 +249,27 @@ contoBancarioHugo.Pay(10)
         //-applicaBonus(): Aggiunge un bonus del 2% (del saldo) al saldo se il saldo supera la soglia.
 
 class ContoRisparmio extends ContoBancario {
-  constructor(owner, balance, paymentLimit, sogliaBonus) {}
+  constructor(owner, balance, paymentLimit, sogliaBonus = 250) {
+    super(owner, balance, paymentLimit)
+    this.sogliaBonus = sogliaBonus
+  }
 
-  applyBonus() {}
+  applyBonus(amount) {
+    const bonus = amount * 0.2
+    this.balance += bonus
+    console.log(`${bonus} euro was added to your balance as a bonus since you since your current balance is higher than ${this.sogliaBonus}`)
+  }
+
+  processDeposit(amountToBeAdded) {
+    super.processDeposit(amountToBeAdded)
+    if (this.balance > this.sogliaBonus) {
+      this.applyBonus(amountToBeAdded)
+    }
+  }
 }
+console.log('conto risparmio')
+const contoRisparmioHugo = new ContoRisparmio(student8, 100)
+console.log('adding 150 to conto risparmio')
+contoRisparmioHugo.processDeposit(150)
+console.log('adding 550 to conto risparmio')
+contoRisparmioHugo.processDeposit(550)

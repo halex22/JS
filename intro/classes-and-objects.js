@@ -83,3 +83,104 @@ console.log(teacher.toString())
 // student1.callMe()
 // console.log(student1.getBestMark())
 // console.log(student2.getBestMark())
+
+class Circle {
+  constructor(centerX, centerY, r){
+    this.centerX = centerX
+    this.centerX = centerY
+    this.r = r
+  }
+  static PI = 3.1416
+
+  get diameter() {
+    return this.r * 2
+  }
+
+  get perimeter(){}
+
+  calculatePerimeter() {
+    return 2 * this.r * Circle.PI
+  }
+
+  calculateArea(){
+    return (this.r ** 2) * Circle.PI
+  }
+}
+
+const circle = new Circle(0,0,10)
+console.log(circle.calculatePerimeter())
+console.log(circle.calculateArea())
+
+
+class Math2 {
+
+  static sum(n1, n2) {
+    return n1 + n2
+  }
+
+  static absolute(n1){
+    return n1 < 0 ? - (n1): n1
+  }
+
+  static cube(n) {
+    return n**3
+  }
+
+}
+
+console.log(Math2.sum(1,2))
+console.log(Math2.absolute(-10))
+console.log(Math2.cube(3))
+
+
+// polymorphism
+class Animal {
+  constructor(name) {
+    this.name = name
+  }
+
+  speak() {
+    return '?'
+  }
+
+  sayName() {
+    return `my name is ${this.name}`
+  }
+}
+
+class Dog extends Animal{
+  constructor(name) {
+    super(name)
+  }
+  speak() {
+    return 'bau'
+  }
+}
+
+class Cat extends Animal{
+  constructor(name) {
+    super(name)
+  }
+
+  speak(){
+    return 'meow'
+  }
+}
+
+const cat1 = new Cat('Laura')
+const cat2 = new Cat('Lorenzo')
+const dog1 = new Dog('Giovanni')
+const dog2 = new Dog('Jan')
+const cat3 = new Cat('Hugo')
+const cat4 = new Cat('Eusebio')
+const cat5 = new Cat('Jeremias')
+
+const animals = [
+  cat1,
+  cat2,
+  dog1,
+  dog2,
+  cat3,
+  cat4,
+  cat5
+]

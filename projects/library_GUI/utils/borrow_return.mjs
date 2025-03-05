@@ -1,7 +1,7 @@
 import AskBot from "./bot.mjs";
 import User from "../model/user.mjs";
-import { PhysicalBook } from "../model/book";
-import Book from "../model/book";
+import { PhysicalBook } from "../model/book.js";
+import Book from "../model/book.js";
 
 
 /**
@@ -14,7 +14,6 @@ import Book from "../model/book";
 export function handleBorrowProcess(arrayOfBooks, user) {
   const booksNameTarget = AskBot.askQuestion('What is the name of the book you want to borrow\n').toLowerCase()
   const bookToBorrow = fetchBook(booksNameTarget, arrayOfBooks)
-    
 }
 
 /**
@@ -23,7 +22,8 @@ export function handleBorrowProcess(arrayOfBooks, user) {
  * @param {Book[]} arrayOfBooks 
  * @returns {Book | undefined}
  */
-function fetchBook(booksName, arrayOfBooks) {
+export function fetchBook(arrayOfBooks) {
+  const booksNameTarget = AskBot.askQuestion('What is the name of the book you want to borrow\n').toLowerCase()
   const bookToBorrow = arrayOfBooks.find(book => book.title.toLowerCase() === booksNameTarget)
   if (!bookToBorrow) console.log(`The book ${booksNameTarget} was not found`)
   return bookToBorrow
@@ -40,13 +40,15 @@ function fetchBook(booksName, arrayOfBooks) {
  * @returns {User | undefined}
  */
 export function identifyUser(userList) {
-  const userNameToFind = AskBot.askQuestion('Please write the user name')
+  const userNameToFind = AskBot.askQuestion('Please write the user name\n')
   const user = userList.find(user => user.name.toLowerCase() === userNameToFind)
   if (!user) console.log(`The user ${user} was not found`)
   return user
 }
 
+
 function deliverBook(book, user) {}
 
 function handleReturnProcess() {}
+
 

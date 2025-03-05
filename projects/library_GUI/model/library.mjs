@@ -7,6 +7,7 @@ export default class Library {
     this.users = []
   }
 
+
   #isABook(possibleBook) {
     if (!(possibleBook instanceof Book)) {
       console.error('Please provide a valid book object')
@@ -72,4 +73,22 @@ export default class Library {
   borrowBook(user, book){
     user.borrowBook(book)
   } 
+
+  canStartExchange() {
+
+    if (!this.users.length && !this.books.length) {
+      console.log('❌ Cannot start borrow process since there are no user nor books registered')
+      return false 
+    }
+    if (!this.users.length) {
+      console.log('❌ Cannot start the borrow process since there is no user registered')
+      return false
+    }
+    if (!this.books.length) {
+      console.log('❌ Cannot start the borrow process since there os no book registered')
+      return false 
+    }
+    
+    return true
+  }
 }

@@ -48,11 +48,12 @@ class User {
       console.error("You haven't borrow any but yet")
       return 
     }
-    if(!this.borrowedBooks.includes(book) ){
+    const bookToReturn = this.borrowedBooks.find(userBook => userBook.isbn === book.isbn)
+    if(!bookToReturn){
       console.log(`The book ${book.title} is not in your books list, please check again`);
       return 
     }
-    // this.borrowedBooks.splice(book);
+    this.borrowedBooks = this.borrowedBooks.filter(userBooks => userBooks.isbn !== book.isbn)
     console.log(`Thanks for returning ${book.title}, hope you have enjoyed it`);
   }
 }

@@ -15,4 +15,15 @@ export default class AskBot {
     }
     return answer.trim()
   }
+
+  static askForInstance( list, fnct) {
+    let instance;
+    while (true) {
+        instance = fnct(list)
+        if (instance) break
+        const shallContinue = AskBot.askQuestion('Do you wanna try again? type N to quiet or any other key to continue\n')
+        if (shallContinue.toLowerCase() === 'n') break
+      }
+    return instance
+  }
 }

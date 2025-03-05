@@ -1,7 +1,8 @@
 import { question } from 'readline-sync';
 import Library from './model/library.mjs'
 import { AskBookInfo, askUserInfo } from './utils/add.mjs';
-import { handleBorrowProcess, identifyUser,  } from './utils/borrow_return.mjs';
+import { handleBorrowProcess, identifyUser, fetchBook } from './utils/borrow_return.mjs';
+import AskBot from './utils/bot.mjs';
 
 const library = new Library('Hugo & Jere Library');
 console.log('\n\nwelcome to Super Library 5000')
@@ -33,11 +34,11 @@ while (true) {
       break;
 
     case "5":
-
+      borrowBook()
       break;
 
     case "6":
-
+      returnUser()
       break;
 
     case "7":
@@ -64,15 +65,42 @@ function addUser() {
 }
 
 function borrowBook() {
-  const user = identifyUser()
 
-  if (!user){}
-  handleBorrowProcess()
+  if (!library.canStartExchange()) return 
+
+  // while (true) {
+  //   const user = identifyUser(library.users)
+  //   if (user) break
+  //   const shallContinue = AskBot.askQuestion('Do you wanna try again? type N to quiet or any other key to continue\n')
+  //   if (!shallContinue.toLowerCase() === 'n') break
+  // }
+  const user = AskBot.askForInstance( library.users, identifyUser)
+  
+  const book = AskBot.askForInstance(library.books, fetchBook)
+
+  // while (true) {
+  //   const book = fetchBook(library.books)
+  //   if (book) break
+  // }
+
 
 }
 
+function returnUser() {
+
+  if (!library.canStartExchange()) return
+
+  const {user, book} = askForUserAndBook()
+
+  if (!user){}
 
 
+  if (!book) {}
 
+}
 
-
+function askForUserAndBook() {
+  const user = identifyUser(library.users)
+  const book = fetchBook(library.books)
+  return {user, book}
+}

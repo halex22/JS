@@ -1,17 +1,12 @@
-
-//     Funzionalità:
-//         Aggiungere e rimuovere libri dalla biblioteca.
-//         Aggiungere e rimuovere utenti dalla biblioteca.
-//         Gestire il prestito e la restituzione dei libri agli utenti.
-//         Visualizzare l'elenco dei libri disponibili e degli utenti registrati.
-
 class Book {
   #isbn;
+  #title
   constructor(title, author, isbn) {
       this.title = title;
       this.author = author;
       this.#isbn = isbn;
       this.rawIsbn = isbn
+      
   }
 
   get isbn(){
@@ -21,6 +16,16 @@ class Book {
   toString(){
       return `Title : ${this.title}\nauthor : ${this.author}\n${this.isbn}`;
   }
+
+  get title(){
+      return this.#title;
+  }
+
+  set title(value){
+      this.#title = value.toUpperCase();
+  }
+
+  CanBeBorrowed() {}
 }
 
 class PhysicalBook extends Book {
@@ -39,6 +44,11 @@ class PhysicalBook extends Book {
     this.#isAvailable = newStatus
   }
 
+  CanBeBorrowed() {
+    return this.#isAvailable
+  }
+
+
   toString(){
       return `Physical Version\n${super.toString()}\nshelfLocation : ${this.shelfLocation}\nstatus: ${this.#isAvailable}`
   }
@@ -53,14 +63,28 @@ class EBook extends Book {
       return `EBook version\n${super.toString()}\nfileFormat : ${this.fileFormat}`;
   }
 
+  CanBeBorrowed() {
+    return true
+  } 
+
+  changeAvailabilityStatus(){}
+
 }
 
 class User {
-  static maxBorrowLimit = 3;
+  static MAX_BORROW_LIMIT = 3;
   constructor(name, id) {
       this.name = name;
       this.id = id;
       this.borrowedBooks = [];
+  }
+
+  get borrowedBooksNumber () {
+    return this.borrowedBooks.length
+  }
+
+  get maxLimit(){
+    return User.MAX_BORROW_LIMIT
   }
 
   /**
@@ -78,7 +102,7 @@ class User {
       console.error('The book is not available right now, please ask later')
       return 
     }
-    if(this.borrowedBooks.length >= User.maxBorrowLimit){
+    if(this.borrowedBooks.length >= this.maxLimit){
       console.error('Borrow limit has been reached (max 3) please return one book in order to take a new one')
       return 
     }
@@ -102,9 +126,13 @@ class User {
 }
 
 class PremiumUser extends User {
-  static maxBorrowLimit = 5;
+  static MAX_BORROW_LIMIT = 5;
   constructor(name, id) {
     super(name, id)
+  }
+
+  get maxLimit() {
+    return PremiumUser.MAX_BORROW_LIMIT
   }
 }
 
@@ -175,7 +203,7 @@ class Library {
    */
   borrowBook(user, book){
     user.borrowBook(book)
-  }
+  } 
 }
 
 const book1 = new Book(`il signore degli anelli`, `J.R.R. Tolkien`, 80054278);

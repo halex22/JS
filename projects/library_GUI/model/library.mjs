@@ -53,10 +53,17 @@ export default class Library {
   }
 
   listBooks() {
+    if (!this.books.length) {
+      console.log('There are no books yet')
+      return 
+    }
     this.books.forEach((book, i) => console.log(`${i + 1}) ${book.title}`))
   }
 
   listUsers() {
+    if (!this.users.length) {
+      console.log('There are no users yet')
+    }
     this.users.forEach((user, i) => console.log(`${i + 1}) ${user.name}`))
   }
 

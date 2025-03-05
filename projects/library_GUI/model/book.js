@@ -1,7 +1,7 @@
 export default class Book {
   #isbn;
   #title
-  constructor(title, author, isbn) {
+  constructor(isbn, title, author, ) {
       this.title = title;
       this.author = author;
       this.#isbn = isbn;
@@ -34,8 +34,8 @@ export default class Book {
 
 export class PhysicalBook extends Book {
     #isAvailable;
-    constructor(title, author, isbn, shelfLocation) {
-        super(title, author, isbn);
+    constructor(isbn, title, author, shelfLocation) {
+        super(isbn, title, author);
         this.shelfLocation = shelfLocation;
         this.#isAvailable = true
     }
@@ -59,7 +59,7 @@ export class PhysicalBook extends Book {
 }
 
 export class EBook extends Book {
-    constructor(title, author, isbn, fileFormat) {
+    constructor(isbn, title, author, fileFormat) {
         super(title, author, isbn);
         this.fileFormat = fileFormat;
     }

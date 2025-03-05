@@ -1,13 +1,15 @@
 import { question } from 'readline-sync';
 import Library from './model/library.mjs'
+import { AskBookInfo } from './utils/add.mjs';
 
-console.log('welcome to Super Library 5000')
+const library = new Library('Hugo & Jere Library');
+console.log('\n\nwelcome to Super Library 5000')
 
 function createMenuString(...args) {
   return args.reduce((a, c, i) => a + `${i + 1}) ${c}\n`, '')
 }
-const options = createMenuString('add user', 'add book', 'borrow book', 'return book', 'exit')
-const menuString ="Here is what you can do\n" + options + "insert the number of the action you want to do\n"
+const options = createMenuString('add user', 'add book','list books', 'list users', 'borrow book', 'return book', 'exit')
+const menuString ="\nHere is what you can do\n" + options + "insert the number of the action you want to do\n"
 
 while (true) {
   const actionNumber = question(menuString)
@@ -18,18 +20,26 @@ while (true) {
       break;
 
     case "2":
-      // addUser();
+      addBook();
       break;
 
     case "3":
-      // borrowBook();
+      library.listBooks()
       break;
 
     case "4":
-
+      library.listUsers()
       break;
 
     case "5":
+
+      break;
+
+    case "6":
+
+      break;
+
+    case "7":
       console.log('thanks for visiting')
       process.exit(0)
       break;
@@ -41,6 +51,14 @@ while (true) {
 }
 
 
+function addBook() {
+  const newBook = AskBookInfo()
+  library.addBook(newBook)
+}
+
+function addUser() {
+  
+}
 
 
 

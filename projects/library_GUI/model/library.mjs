@@ -1,4 +1,5 @@
 import Book from "./book.js"
+import User from "./user.mjs"
 
 export default class Library {
   constructor() {
@@ -42,7 +43,7 @@ export default class Library {
   addUser(user){
     if (this.#isAnUser(user)) {
       this.users.push(user)
-      console.log(user.name, 'was registered in the library')
+      console.log(`user ${user.name} was enrolled ! welcome` )
     }
   }
 
@@ -57,6 +58,7 @@ export default class Library {
       console.log('There are no books yet')
       return 
     }
+    console.log('This library users are:\n')
     this.books.forEach((book, i) => console.log(`${i + 1}) ${book.title}`))
   }
 

@@ -2,18 +2,8 @@ import User from '../model/user.mjs'
 import { PhysicalBook } from '../model/book.js';
 import { EBook } from '../model/book.js';
 import { question } from 'readline-sync';
+import AskBot from './bot.mjs';
 
-class AskBot {
-
-  static askQuestion(query) {
-    let answer;
-    while (true) {
-      const answer = question(query)
-      if (answer) break
-    }
-    return answer
-  }
-}
 
 function AskUserInfo() {
 
@@ -21,26 +11,27 @@ function AskUserInfo() {
 
 export function AskBookInfo() {
 
-  const bookISBN = question('What is the ISBN of the new book?\n')
-  const bookName = question('What is the name of the new book?\n')
-  const bookAuthor = question('How is the author?\n')
+
+  const bookISBN = AskBot.askQuestion('What is the ISBN of the new book?\n')
+  const bookName = AskBot.askQuestion('What is the name of the new book?\n')
+  const bookAuthor = AskBot.askQuestion('How is the author?\n')
 
   let bookType;
   while (true) {
-    const answer = question(`Type 'e' for Ebook or 'p' for physical\n`)
+    const answer = AskBot.askQuestion(`Type 'e' for Ebook or 'p' for physical\n`)
     if (answer !== 'e' && answer !== 'p') continue
     bookType = answer
     break
   }
 
   if (bookType === 'p') {
-    const bookShelfId = question('Where is the ID of the new book shelf\n')
+    const bookShelfId = AskBot.askQuestion('Where is the ID of the new book shelf\n')
     return new PhysicalBook(bookISBN, bookName, bookAuthor, bookShelfId)
   }
 
   const allowedFormats = ['epub', 'mobi', 'pdf']
   while (true) {
-    const bookFormat = question('Which is the format of the e-book? choose between epub, mobi or pdf\n')
+    const bookFormat = AskBot.askQuestion('Which is the format of the e-book? choose between epub, mobi or pdf\n')
     if (allowedFormats.includes(bookFormat.toLowerCase())) {
       return new EBook(bookISBN, bookName, bookAuthor, bookFormat)
     }
@@ -48,12 +39,11 @@ export function AskBookInfo() {
   }
 }
 
-function addUser() {
-  const addUserName = "inserisci nome:\n";
-  const name = question(addUserName);
+export function askUserInfo() {
+  const name = AskBot.askQuestion("What is the user name\n");
+  console.log(name)
   const id = crypto.randomUUID();
-  const user = new User(id, name);
-  library.addUser(user)
-  library.listUsers();
+  return new User(id, name);
+
 }
 

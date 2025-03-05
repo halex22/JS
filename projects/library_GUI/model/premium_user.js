@@ -2,8 +2,8 @@ import User from "./user.js";
 
 export default class PremiumUser extends User {
   static MAX_BORROW_LIMIT = 5;
-  constructor(name, id) {
-    super(name, id)
+  constructor(id, name) {
+    super(id, name)
   }
 
   get maxLimit() {

@@ -1,6 +1,7 @@
 import { question } from 'readline-sync';
 import Library from './model/library.mjs'
-import { AskBookInfo } from './utils/add.mjs';
+import { AskBookInfo, askUserInfo } from './utils/add.mjs';
+import { handleBorrowProcess, identifyUser,  } from './utils/borrow_return.mjs';
 
 const library = new Library('Hugo & Jere Library');
 console.log('\n\nwelcome to Super Library 5000')
@@ -16,7 +17,7 @@ while (true) {
 
   switch (actionNumber) {
     case "1":
-      // addUser();
+      addUser();
       break;
 
     case "2":
@@ -57,7 +58,17 @@ function addBook() {
 }
 
 function addUser() {
-  
+  const newUser = askUserInfo()
+  console.log(newUser)
+  library.addUser(newUser)
+}
+
+function borrowBook() {
+  const user = identifyUser()
+
+  if (!user){}
+  handleBorrowProcess()
+
 }
 
 

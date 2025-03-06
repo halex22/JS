@@ -68,21 +68,15 @@ function borrowBook() {
 
   if (!library.canStartExchange()) return 
 
-  // while (true) {
-  //   const user = identifyUser(library.users)
-  //   if (user) break
-  //   const shallContinue = AskBot.askQuestion('Do you wanna try again? type N to quiet or any other key to continue\n')
-  //   if (!shallContinue.toLowerCase() === 'n') break
-  // }
+
   const user = AskBot.askForInstance( library.users, identifyUser)
+  if (!user) return 
   
   const book = AskBot.askForInstance(library.books, fetchBook)
+  if (!book) return
 
-  // while (true) {
-  //   const book = fetchBook(library.books)
-  //   if (book) break
-  // }
-
+  library.borrowBook(user, book)
+  // book.changeAvailabilityStatus()
 
 }
 

@@ -71,6 +71,19 @@ export default class Library {
   }
 
   borrowBook(user, book){
+    
+    if (!book.isAvailable) {
+      console.error('The book is not available right now, please ask later')
+      return 
+    }
+
+    if(user.borrowedBooks.length >= user.maxLimit){
+      console.error('Borrow limit has been reached (max 3) please return one book in order to take a new one')
+      return 
+    }
+
+    book.changeAvailabilityStatus(false)
+
     user.borrowBook(book)
   } 
 

@@ -30,14 +30,14 @@ class User {
    */
   borrowBook(book){
 
-    if (!book.isAvailable) {
-      console.error('The book is not available right now, please ask later')
-      return 
-    }
-    if(this.borrowedBooks.length >= this.maxLimit){
-      console.error('Borrow limit has been reached (max 3) please return one book in order to take a new one')
-      return 
-    }
+    // if (!book.isAvailable) {
+    //   console.error('The book is not available right now, please ask later')
+    //   return 
+    // }
+    // if(this.borrowedBooks.length >= this.maxLimit){
+    //   console.error('Borrow limit has been reached (max 3) please return one book in order to take a new one')
+    //   return 
+    // }
     book.changeAvailabilityStatus(false)
     this.borrowedBooks.push(book);
     console.log(`You just borrow ${book.title}`);

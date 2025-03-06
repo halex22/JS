@@ -5,9 +5,7 @@ import { question } from 'readline-sync';
 import AskBot from './bot.mjs';
 
 
-function AskUserInfo() {
 
-}
 
 export function AskBookInfo() {
 

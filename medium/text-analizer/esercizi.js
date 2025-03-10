@@ -16,8 +16,7 @@ Vino rosso;1;Enoteca`
 
 
 //1) creare una funzione che, partendo da lista, ritorni un array di oggetti: {nome: value, quantità: value, provenienza:value}
-// olanzapina
-// ciprexa
+
 
 // const rgx = /(\w+|\w+\s\w+);(\d{1,3});(\w+)g/
 const rgx = /(\w+(?:\s\w+)*);(\d{1,3});(\w+)/g;
